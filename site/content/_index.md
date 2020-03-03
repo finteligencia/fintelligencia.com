@@ -16,9 +16,9 @@ intro:
     text3: "Realizing the value of big data requires advanced analytical tools, high data security and quality, and constant performance optimization. Finteligencia can successfully assist companies understand and analyze consumer behavior, manage, predict, and extract important trends also implement scalable innovative models. We empower companies to turn their ideas into goals and convert knowledge into action."   
     
 products:
-    - image: img/illustrations-coffee.svg
+    - image: https://res.cloudinary.com/lmj6rf6tz/image/upload/v1554265661/svg/illustrations/make-it-rain.svg
       text: "Through our API solutions, you can benefit from our world-class Elektropay infrastructure and gain access to our full suite of global payment, risk management and verification solutions."
-    - image: /img/illustrations-coffee-gear.svg
+    - image: https://res.cloudinary.com/lmj6rf6tz/image/upload/v1554265663/svg/illustrations/portfolio.svg
       text: "Our dynamic and scalable Direct API connects directly to your own ecosystem or CRM, giving your business automated access to our suite of global payments, risk management and banking solutions – streamlining your payments, increasing efficiency and boosting revenue."
 
 
