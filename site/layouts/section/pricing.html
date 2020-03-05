@@ -6,16 +6,37 @@
           <div class="mb-6">
             <h1 class="text-white">Find the <span class="font-weight-semi-bold">right plan</span> for your next project</h1>
           </div>
-
-         
+          <!-- Button Group -->
+          <div class="btn-group btn-group-toggle mb-4">
+            <a class="js-animation-link btn btn-outline-light btn-custom-toggle-white btn-sm-wide active" href="javascript:;"
+               data-target="#pricingMonthly"
+               data-link-group="idPricing">
+              Monthly
+            </a>
+            <a class="js-animation-link btn btn-outline-light btn-custom-toggle-white btn-sm-wide" href="javascript:;"
+               data-target="#pricingYearly"
+               data-link-group="idPricing">
+              Yearly
+              <span class="badge badge-success badge-pill badge-bigger badge-pos">10% OFF</span>
+            </a>
+          </div>
+          <!-- End Button Group -->
         </div>
       </div>
+
     </div>
     <!-- End Hero Section -->
 
+
+    <div class="position-relative mt-n23 z-index-2">
 <div class="container">
   <!-- Pricing Carousel -->
- 
+ <div id="pricingMonthly" data-target-group="idPricing">
+            <div class="js-slick-carousel u-slick u-slick--gutters-2 z-index-2"
+                 data-slides-show="4"
+                 data-adaptive-height="true"
+                 data-slides-scroll="1"
+                 data-pagi-classes="d-lg-none text-center u-slick__pagination mt-7 mb-0">
     <div class="js-slide">
       <!-- Pricing -->
       <div class="card transition-3d-hover">
@@ -140,6 +161,7 @@
   </div>
   <!-- End Pricing Carousel -->
 </div>
+          </div>
 <!-- End Pricing Section -->
 
 <!-- API Pricing Section -->
