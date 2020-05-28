@@ -1,58 +1,69 @@
 {
-  "name": "victor-hugo",
-  "version": "1.0.0",
-  "description": "Victor Hugo is a Hugo boilerplate for creating truly epic websites!",
-  "main": "index.js",
-  "scripts": {
-    "hugo": "gulp hugo",
-    "webpack": "gulp webpack",
-    "build": "gulp build",
-    "build-preview": "gulp build-preview",
-    "start": "gulp server",
-    "lint": "eslint src"
-  },
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.0.0",
-    "babel-loader": "^7.0.0",
-    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
-    "babel-plugin-transform-class-properties": "^6.10.2",
-    "babel-plugin-transform-object-assign": "^6.8.0",
-    "babel-plugin-transform-object-rest-spread": "^6.8.0",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.11.1",
-    "babel-register": "^6.11.6",
-    "browser-sync": "^2.13.0",
-    "css-loader": "^2.0.0",
-    "cssnano": "^4.0.0",
-    "date-fns": "^1.27.2",
-    "eslint": "^5.0.0",
-    "eslint-plugin-import": "^2.0.0",
-    "exports-loader": "^0.7.0",
-    "file-loader": "^2.0.0",
-    "gotrue-js": "^0.9.1",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.0",
-    "gulp-postcss": "^8.0.0",
-    "gulp-util": "^3.0.7",
-    "imports-loader": "^0.8.0",
-    "netlify-cms": "^2.9.0",
-    "postcss-cssnext": "^3.0.0",
-    "postcss-import": "^12.0.0",
-    "postcss-loader": "^3.0.0",
-    "postcss-uncss": "^0.16.0",
-    "react": "16.7.0",
-    "uncss": "^0.16.0",
-    "url-loader": "^1.0.0",
-    "webpack": "^3.0.0",
-    "whatwg-fetch": "^2.0.0"
+  "name": "react-next-landing",
+  "description": "Modern Multipurpose Landing Pages Template Using React, Next, Styled Components and so on. It also support Gatsby Static site generator ",
+  "version": "4.0.1",
+  "private": true,
+  "author": "RedQ Team",
+  "license": "",
+  "repository": {
+    "type": "git",
+    "url": ""
   },
   "devDependencies": {
-    "gulp-inject": "^5.0.0",
-    "gulp-svgmin": "^1.2.3",
-    "gulp-svgstore": "^6.1.0",
-    "svg-sprite-loader": "^3.0.0"
+    "@babel/cli": "^7.8.3",
+    "cpx": "^1.5.0",
+    "cross-env": "^7.0.0",
+    "firebase-tools": "7.12.1",
+    "husky": "^4.2.1",
+    "lerna": "^3.20.2",
+    "lint-staged": "^10.0.3",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.1"
+  },
+  "workspaces": [
+    "packages/common",
+    "packages/landing",
+    "packages/landing-gatsby",
+    "packages/reusecore"
+  ],
+  "scripts": {
+    "clean": "lerna clean --yes && rimraf node_modules",
+    "start": "lerna run --parallel dev",
+    "preweb": "cpx \"packages/common/src/assets/image/**/*.*\" \"packages/landing/static\" -C",
+    "next-dev": "yarn workspace next-landing run dev",
+    "next-build": "rimraf dist && yarn workspace next-landing run build",
+    "next-start": "yarn workspace next-landing run start",
+    "next-export": "yarn workspace next-landing run export",
+    "gatsby-dev": "yarn workspace gatsby-landing run dev",
+    "gatsby-build": "yarn workspace gatsby-landing run build",
+    "gatsby-serve": "yarn workspace gatsby-landing run serve",
+    "prebuild-public": "rimraf \"dist/functions/**\" && rimraf \"dist/public\"",
+    "prefirebase-serve": "yarn run build-public && yarn run build-funcs && yarn workspace next-landing run build && yarn run copy-deps && yarn run install-deps",
+    "firebase-serve": "cross-env NODE_ENV=production firebase serve",
+    "prefirebase-deploy": "yarn run build-public && yarn run build-funcs && yarn workspace next-landing run build && yarn run copy-deps",
+    "firebase-deploy": "cross-env NODE_ENV=production firebase deploy",
+    "build-public": "cpx \"packages/common/src/assets/**/*.*\" \"dist/public/static\" -C && cpx \"public/**/*.*\" \"dist/public\" -C && cpx \"packages/landing/public/**/*.*\" \"dist/public\" -C",
+    "build-funcs": "babel \"packages/functions\" --out-dir \"dist/functions\"",
+    "copy-deps": "cpx \"packages/landing/*{package.json,package-lock.json,yarn.lock}\" \"dist/functions\" -C",
+    "install-deps": "cd \"dist/functions\" && yarn",
+    "pregatsby-firebase-serve": "rimraf dist && yarn run gatsby-build && cpx \"packages/landing-gatsby/public/**/*.*\" \"dist/public\" -C",
+    "gatsby-firebase-serve": "cross-env NODE_ENV=production firebase serve",
+    "pregatsby-firebase-deploy": "rimraf dist && yarn run gatsby-build && cpx \"packages/landing-gatsby/public/**/*.*\" \"dist/public\" -C",
+    "gatsby-firebase-deploy": "firebase deploy",
+    "netlify-deploy": "yarn workspace next-landing run netlify-build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,md,css}": [
+      "prettier --trailing-comma es5 --single-quote --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "polished": "^3.4.4"
   }
 }
